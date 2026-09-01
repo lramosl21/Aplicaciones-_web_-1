@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="reloj">
+        <h1>Reloj Digital</h1>
+
+        <div id="hora">
+            <span id="horas">00</span> :
+            <span id="minutos">00</span> :
+            <span id="segundos">00</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+function actualizarReloj() {
+
+    const ahora = new Date();
+
+    let horas = ahora.getHours();
+    let minutos = ahora.getMinutes();
+    let segundos = ahora.getSeconds();
+
+    horas = horas < 10 ? "0" + horas : horas;
+    minutos = minutos < 10 ? "0" + minutos : minutos;
+    segundos = segundos < 10 ? "0" + segundos : segundos;
+
+    document.getElementById("horas").textContent = horas;
+    document.getElementById("minutos").textContent = minutos;
+    document.getElementById("segundos").textContent = segundos;
+}
+
+actualizarReloj();
+
+setInterval(actualizarReloj, 1000);
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 20% 20%, #1e3a5f 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, #312e81 0%, transparent 40%),
+        #080d18;
+
+    overflow: hidden;
+}
+
+/* Círculos decorativos de fondo */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+
+    opacity: 0.35;
+
+    animation: moverLuz 8s ease-in-out infinite alternate;
+}
+
+body::before {
+    background: #00e5ff;
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    background: #7c3aed;
+    bottom: -100px;
+    right: -100px;
+
+    animation-delay: 2s;
+}
+
+/* Tarjeta del reloj */
+.reloj {
+    position: relative;
+
+    width: 560px;
+    padding: 50px 45px;
+
+    text-align: center;
+
+    background: rgba(15, 23, 42, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 28px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+    animation: aparecer 1s ease forwards;
+}
+
+/* Línea brillante superior */
+.reloj::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 15%;
+
+    width: 70%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #00e5ff,
+        #7c3aed,
+        transparent
+    );
+
+    box-shadow: 0 0 15px #00e5ff;
+
+    animation: brillo 3s ease-in-out infinite;
+}
+
+/* Título */
+h1 {
+    margin: 0 0 30px;
+
+    color: #ffffff;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    letter-spacing: 5px;
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.25);
+
+    animation: titulo 2s ease-in-out infinite alternate;
+}
+
+/* Contenedor de la hora */
+#hora {
+    padding: 25px 20px;
+
+    border-radius: 18px;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    border: 1px solid rgba(0, 229, 255, 0.12);
+
+    color: #00f5d4;
+
+    font-size: 64px;
+    font-weight: 700;
+
+    font-family: "Courier New", monospace;
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 0 5px #00f5d4,
+        0 0 15px #00f5d4,
+        0 0 35px rgba(0, 245, 212, 0.6);
+
+    box-shadow:
+        inset 0 0 25px rgba(0, 245, 212, 0.05),
+        0 0 25px rgba(0, 245, 212, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.reloj:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.65),
+        0 0 40px rgba(0, 229, 255, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+    transition: 0.4s ease;
+}
+
+.reloj:hover #hora {
+    text-shadow:
+        0 0 5px #00f5d4,
+        0 0 20px #00f5d4,
+        0 0 45px #00f5d4;
+}
+
+/* Animación de entrada */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Movimiento de las luces */
+@keyframes moverLuz {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(80px, 50px) scale(1.2);
+    }
+}
+
+/* Brillo de la línea */
+@keyframes brillo {
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scaleX(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+/* Animación del título */
+@keyframes titulo {
+    from {
+        opacity: 0.8;
+    }
+
+    to {
+        opacity: 1;
+        text-shadow:
+            0 0 15px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* Adaptación para celulares */
+@media (max-width: 650px) {
+
+    .reloj {
+        width: 90%;
+        padding: 40px 20px;
+    }
+
+    h1 {
+        font-size: 21px;
+        letter-spacing: 3px;
+    }
+
+    #hora {
+        font-size: 40px;
+        padding: 20px 10px;
+        letter-spacing: 2px;
+    }
+}
