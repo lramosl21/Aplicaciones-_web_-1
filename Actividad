@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >Leiver</title>
+
+</head>
+<body>
+    <h1 style="color:blue;"> Actividad  </h1>
+    <br>
+    <h2> Texto</h2>
+    <br>
+    <p> <strong> Un cuento es una </strong>narración breve de hechos reales o 
+        ficticios, <em> por tener un grupo pequeño </em>de personajes, 
+        un argumento sencillo y una estructura clara.
+
+ </p>
+
+ <br>
+ <h2 style="color: brown;"> Tareas Pendientes </h2>
+ <ul> 
+    <li> Matemamatica 
+       <li> Sociales 
+         <li>Naturales</li>
+         <h3> Enlace de Recomendacion </h3>
+         <p> Puedes Acceder desde aqui 
+    
+         <a > file:///C:/Users/HP/Desktop/leiver/ejercicio-1.html" target=google"a nuestra pagina recomendada</a>
+        </p>
+ 
+    
+</body>
+</html>
