@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiador de Color</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="contenedor">
+        <h1>Cambiador de Color</h1>
+
+        <p id="codigoColor">#FFFFFF</p>
+
+        <button id="cambiarColor">Cambiar Color</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+const boton = document.getElementById("cambiarColor");
+const codigoColor = document.getElementById("codigoColor");
+
+function generarColor() {
+    const letras = "0123456789ABCDEF";
+    let color = "#";
+
+    for (let i = 0; i < 6; i++) {
+        color += letras[Math.floor(Math.random() * 16)];
+    }
+
+    return color;
+}
+
+boton.addEventListener("click", function() {
+    const color = generarColor();
+
+    document.body.style.backgroundColor = color;
+    codigoColor.textContent = color;
+});
+body {
+    margin: 0;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    transition: background-color 0.3s;
+}
+
+.contenedor {
+    text-align: center;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+#codigoColor {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+button {
+    padding: 15px 30px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #222;
+    color: white;
+
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
